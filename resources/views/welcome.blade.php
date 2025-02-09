@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Student Network</title>
+    @vite('resources/css/app.css')
 </head>
-<body>
+<body class="text-center px-8 py-12">
     <h1>Welcome to Student network</h1>
     <p>CLick the button below to view the students</p>
-    <a href="/students" class="btn">Find Students!</a>
+    <a href="/students" class="btn mt-4 inline-block">Find Students!</a>
 </body>
 </html>
