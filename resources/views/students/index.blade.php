@@ -8,11 +8,18 @@
 </head>
 <body>
     <h2>Currently Available Students</h2>
-    <p> {{ $greeting }} </p>
+
+    @if($greeting == "Hello") 
+        <p>There are no students available</p>
+    @endif    
+
     <ul>
-        <li><a href="/students/{{ $students[0]['rollno'] }}"> {{ $students[0]['name'] }} </a></li>
-        <li><a href="/students/{{ $students[1]['rollno'] }}"> {{ $students[1]['name'] }} </a></li>
-        <li><a href="/students/{{ $students[2]['rollno'] }}"> {{ $students[2]['name'] }} </a></li>
+        @foreach ($students as $student)
+                    <li>
+                        <p> {{ $student['name'] }} </p>
+                        <a href="/students/{{ $student['rollno'] }}"> View Details </a>
+                    </li>
+        @endforeach
     </ul>
 </body>
 </html>
