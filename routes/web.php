@@ -7,5 +7,14 @@ Route::get('/', function () {
 });
 
 Route::get('/students', function () {
-    return view('students.index');
+    $students = [
+        ['name' => 'John', 'rollno' => '1'],
+        ['name' => 'Doe', 'rollno' => '2'],
+        ['name' => 'Jane', 'rollno' => '3'],
+    ];
+    return view('students.index', ['greeting' => 'Hello', 'students' => $students]);
+});
+
+Route::get('/students/{id}', function ($id) {
+    return view('students.show', ['id' => $id]);
 });
