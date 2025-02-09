@@ -8,9 +8,11 @@ Route::get('/', function () {
 
 Route::get('/students', function () {
     $students = [
-        ['name' => 'John', 'rollno' => '1'],
-        ['name' => 'Doe', 'rollno' => '2'],
-        ['name' => 'Jane', 'rollno' => '3'],
+        ['name' => 'John', 'rollno' => '1', 'age' => '20'],
+        ['name' => 'Doe', 'rollno' => '2', 'age' => '21'],
+        ['name' => 'Jane', 'rollno' => '3', 'age' => '22'],
+        ['name' => 'Smith', 'rollno' => '4', 'age' => '23'],
+        ['name' => 'Alex', 'rollno' => '5', 'age' => '24'],
     ];
     return view('students.index', ['greeting' => 'Hello', 'students' => $students]);
 });
