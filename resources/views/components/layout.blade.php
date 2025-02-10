@@ -14,8 +14,8 @@
     <header class="sticky top-0 h-fit">
         <nav>
             <h1>Student Network</h1>
-            <a href="/students"> All students </a>
-            <a href="/students/create"> Add New Students </a>
+            <a href="{{ route('students.index') }}"> All students </a>
+            <a href="{{ route('students.create') }}"> Add New Students </a>
         </nav>
     </header>
 
