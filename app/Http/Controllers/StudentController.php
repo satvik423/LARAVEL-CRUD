@@ -12,7 +12,7 @@ class StudentController extends Controller
         // route -> /students
         // fetch all records and pass into the index view
         // $students = student::all();
-        $students = student::orderBy('class', 'asc')->get();
+        $students = student::orderBy('class', 'asc')->paginate(5);
         return view('students.index', ['students' => $students]);
     }
 
