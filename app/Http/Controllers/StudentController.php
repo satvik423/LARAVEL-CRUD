@@ -40,13 +40,13 @@ class StudentController extends Controller
         // validate the request
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'class' => 'required|integer|min:1|max:12',
+            'class' => 'required|integer|min:1|max:10',
             'mark' => 'required|integer|min:0|max:100',
             'bio' => 'required|string|min:20|max:1000',
         ]);
 
         student::create($validatedData);
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Student record created successfully');
     }
 
     public function destroy($id)
@@ -55,6 +55,6 @@ class StudentController extends Controller
         // handles DELETE request to delete the student record with the given id
         $student = student::findOrFail($id);
         $student->delete();
-        return redirect()->route('students.index');
+        return redirect()->route('students.index')->with('success', 'Student record deleted successfully');
     }
 }
