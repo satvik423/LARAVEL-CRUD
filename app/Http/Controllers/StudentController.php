@@ -48,4 +48,13 @@ class StudentController extends Controller
         student::create($validatedData);
         return redirect()->route('students.index');
     }
+
+    public function destroy($id)
+    {
+        // route -> /students/{id} (DELETE)
+        // handles DELETE request to delete the student record with the given id
+        $student = student::findOrFail($id);
+        $student->delete();
+        return redirect()->route('students.index');
+    }
 }
