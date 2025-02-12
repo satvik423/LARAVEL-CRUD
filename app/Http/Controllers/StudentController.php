@@ -29,6 +29,7 @@ class StudentController extends Controller
     {
         // route -> /students/create
         // return the create view
+
         return view('students.create');
     }
 
@@ -36,5 +37,15 @@ class StudentController extends Controller
     {
         // route -> /students/ (POST)
         // handles POST request to store the new student record in table
+        // validate the request
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'class' => 'required|integer|min:1|max:12',
+            'mark' => 'required|integer|min:0|max:100',
+            'bio' => 'required|string|min:20|max:1000',
+        ]);
+
+        student::create($validatedData);
+        return redirect()->route('students.index');
     }
 }
