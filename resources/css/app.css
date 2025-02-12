@@ -47,6 +47,10 @@ textarea {
 .card {
     @apply bg-white rounded border border-gray-200 px-3 py-3 my-2 flex justify-between items-center;
 }
+.show {
+    @apply bg-gray-200 p-4 rounded;
+}
+
 .highlight-red {
     @apply border-l-4 border-l-red-500;
 }
