@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStudentRequest;
 
 class StudentController extends Controller
 {
@@ -33,19 +34,12 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreStudentRequest  $request)
     {
         // route -> /students/ (POST)
         // handles POST request to store the new student record in table
         // validate the request
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'class' => 'required|integer|min:1|max:10',
-            'mark' => 'required|integer|min:0|max:100',
-            'bio' => 'required|string|min:20|max:1000',
-        ]);
-
-        student::create($validatedData);
+        student::create($request->validated());
         return redirect()->route('students.index')->with('success', 'Student record created successfully');
     }
 
