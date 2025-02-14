@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\student;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
 
@@ -13,7 +14,7 @@ class StudentController extends Controller
         // route -> /students
         // fetch all records and pass into the index view
         // $students = student::all();
-        $students = student::orderBy('class', 'asc')->paginate(5);
+        $students = student::with('branch')->orderBy('class', 'asc')->paginate(5);
         return view('students.index', ['students' => $students]);
     }
 
@@ -21,7 +22,7 @@ class StudentController extends Controller
     {
         // route -> /students/{id}
         // fetch the record with the given id and pass into the show view
-        $student = student::findOrFail($id);
+        $student = student::with('branch')->findOrFail($id);
 
         return view('students.show', ['student' => $student]);
     }
@@ -30,8 +31,8 @@ class StudentController extends Controller
     {
         // route -> /students/create
         // return the create view
-
-        return view('students.create');
+        $branches = Branch::all();
+        return view('students.create', ['branches' => $branches]);
     }
 
     public function store(StoreStudentRequest  $request)

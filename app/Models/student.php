@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class student extends Model
 {
-    protected $fillable = ['name', 'class', 'bio', 'mark'];
+    protected $fillable = ['name', 'class', 'bio', 'mark', 'branch_id'];
 
     /** @use HasFactory<\Database\Factories\StudentFactory> */
     use HasFactory;
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Branch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class StudentFactory extends Factory
             'class' => fake()->numberBetween(1, 12),
             'bio' => fake()->realText(500),
             'mark' => fake()->numberBetween(1, 100),
+            'branch_id' => Branch::inRandomOrder()->first()->id,
         ];
     }
 }

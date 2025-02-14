@@ -2,6 +2,7 @@
     <h2> {{ $student->name }} </h2>
     <div class="show">
         <p><strong>Class: </strong> {{ $student->class }} </p>
+        <p><strong>Branch: </strong> {{ $student->branch->name }} </p>
         <p><strong>Mark: </strong> {{ $student->mark }} </p>
         <p><strong>About me: </strong> {{ $student->bio }} </p>
     </div>

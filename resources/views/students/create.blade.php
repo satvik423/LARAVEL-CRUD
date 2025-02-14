@@ -9,7 +9,7 @@
                 {{ $message }}
             </div>
         @enderror
-        <input type="text" name="name" id="name" value="{{ old('name')}}" required>
+        <input type="text" name="name" id="name" value="{{ old('name')}}" >
         <label for="class">Student Class: </label>
         @error('class')
             <div class="error">
@@ -29,20 +29,32 @@
             <option value="9"  {{ old('class') == 9 ? 'selected' : '' }}>Class 9</option>
             <option value="10" {{ old('class') == 10 ? 'selected' : '' }}>Class 10</option>
         </select>
+        <label for="branch_id">Student Branch: </label>
+        @error('branch_id')
+            <div class="error">
+                {{ $message }}
+            </div>
+        @enderror
+        <select name="branch_id" id="branch_id">
+            <option value="" disabled selected> Select a branch</option>
+            @foreach ($branches as $branch)
+                <option value="{{ $branch->id }}" {{  $branch->id == old('branch_id') ? 'selected' : '' }}>{{ $branch->name }}</option>
+            @endforeach
+        </select>
         <label for="mark">Student Mark: </label>
         @error('mark')
             <div class="error">
                 {{ $message }}
             </div>
         @enderror
-        <input type="number" name="mark" id="mark" value="{{ old('mark')}}" required>
+        <input type="number" name="mark" id="mark" value="{{ old('mark')}}" >
         <label for="bio">Student Bio: </label>
         @error('bio')
             <div class="error">
                 {{ $message }}
             </div>
         @enderror
-        <textarea rows="5" name="bio" id="bio" required >{{ old('bio')}}</textarea>
+        <textarea rows="5" name="bio" id="bio"  >{{ old('bio')}}</textarea>
 
         <button type="submit" class="btn mt-4"> Add Student</button>
 
