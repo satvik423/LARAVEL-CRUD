@@ -11,9 +11,13 @@ class Branch extends Model
 
     /** @use HasFactory<\Database\Factories\BranchFactory> */
     use HasFactory;
-    
+
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+    public function teachers()
+    {
+        return $this->hasMany(Teachers::class);
     }
 }

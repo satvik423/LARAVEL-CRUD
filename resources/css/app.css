@@ -74,3 +74,16 @@ textarea {
 .error {
     @apply border border-red-500 rounded text-red-700 text-center mt-1;
 }
+
+/* Hover menu for 'Add New' */
+
+.hover-btn:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
