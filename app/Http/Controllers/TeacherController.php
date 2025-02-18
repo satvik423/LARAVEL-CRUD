@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Branch;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Models\teachers;
+use App\Events\NewTeacherAdded;
+use App\Events\TeacherDeleted;
 
 class TeacherController extends Controller
 {
@@ -46,7 +46,8 @@ class TeacherController extends Controller
     {
         // route -> /teachers/ (POST)
         // Handles POST request to store the new teacher record in the table
-        teachers::create($request->validated());
+        $teacher = teachers::create($request->validated());
+        event(new NewTeacherAdded($teacher));
         return redirect()->route('teachers.index')->with('success', 'Teacher record created successfully');
     }
 
@@ -55,6 +56,7 @@ class TeacherController extends Controller
         // route -> /teachers/{id} (DELETE)
         // Handles DELETE request to remove a teacher by ID
         $teacher = teachers::findOrFail($id);
+        event(new TeacherDeleted($teacher));
         $teacher->delete();
         return redirect()->route('teachers.index')->with('success', 'Teacher record deleted successfully');
     }

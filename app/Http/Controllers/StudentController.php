@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewStudentAdded;
 use App\Models\student;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
+use App\Events\StudentDeleted;
 
 class StudentController extends Controller
 {
@@ -40,7 +42,8 @@ class StudentController extends Controller
         // route -> /students/ (POST)
         // handles POST request to store the new student record in table
         // validate the request
-        student::create($request->validated());
+        $student = student::create($request->validated());
+        event(new NewStudentAdded($student));
         return redirect()->route('students.index')->with('success', 'Student record created successfully');
     }
 
@@ -49,7 +52,8 @@ class StudentController extends Controller
         // route -> /students/{id} (DELETE)
         // handles DELETE request to delete the student record with the given id
         $student = student::findOrFail($id);
-        $student->delete();
+        event(new StudentDeleted($student));
+        $student = $student->delete();
         return redirect()->route('students.index')->with('success', 'Student record deleted successfully');
     }
 }
