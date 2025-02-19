@@ -19,10 +19,11 @@ class StudentFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'class' => fake()->numberBetween(1, 12),
+            'class' => fake()->numberBetween(1, 10),
             'bio' => fake()->realText(500),
             'mark' => fake()->numberBetween(1, 100),
             'branch_id' => Branch::inRandomOrder()->first()->id,
+            'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }
 }

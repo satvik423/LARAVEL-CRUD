@@ -23,11 +23,12 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z\s.]+$/',
             'class' => 'required|integer|min:1|max:10',
             'mark' => 'required|integer|min:0|max:100',
             'bio' => 'required|string|min:20|max:1000',
             'branch_id' => 'required|exists:branches,id',
+            'status' => 'required|in:active,inactive',
         ];
     }
 

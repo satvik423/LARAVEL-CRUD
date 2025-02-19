@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('bio');
             $table->integer('mark');
             $table->foreignId('branch_id')->constrained("branches")->onDelete('cascade');
+            $table->string('status')->default('active');
         });
     }
 

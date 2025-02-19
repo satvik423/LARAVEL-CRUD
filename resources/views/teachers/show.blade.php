@@ -13,7 +13,7 @@
     @else
         <ul>
             @foreach ($students as $student)
-                   <x-card href="{{ route('students.show', $student->id) }}" :highlight-red='$student["mark"] < 40' :highlight-blue='$student["mark"] >= 40 && $student["mark"] < 60' :highlight-green='$student["mark"] >= 60 && $student["mark"] < 80' :highlight-gold='$student["mark"] >= 80'>
+                   <x-card href="{{ route('students.show', $student->id) }}" :is-inactive="$student->status === 'inactive'" :highlight-red='$student["mark"] < 40' :highlight-blue='$student["mark"] >= 40 && $student["mark"] < 60' :highlight-green='$student["mark"] >= 60 && $student["mark"] < 80' :highlight-gold='$student["mark"] >= 80'>
                     <div>
                         <p><strong>Name:</strong> {{ $student->name }}</p>
                         <p><strong>Class:</strong> {{ $student->class }}</p>

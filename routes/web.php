@@ -15,6 +15,8 @@ Route::middleware([LogRequestActivity::class])->group(function () {
     Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
     Route::post('/students', [StudentController::class, 'store'])->name('students.store');
     Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+    Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::put('/students/{id}', [StudentController::class, 'update'])->name('students.update');
 
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
     Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');

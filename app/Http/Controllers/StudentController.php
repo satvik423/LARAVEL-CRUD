@@ -56,4 +56,26 @@ class StudentController extends Controller
         $student = $student->delete();
         return redirect()->route('students.index')->with('success', 'Student record deleted successfully');
     }
+
+    public function edit($id)
+    {
+        // Find the student by ID or fail
+        $student = Student::findOrFail($id);
+        $branches = Branch::all();
+
+        // Return the edit view with student and branch data
+        return view('students.edit', compact('student', 'branches'));
+    }
+
+    public function update(StoreStudentRequest $request, $id)
+    {
+        // Find the student by ID or fail
+        $student = Student::findOrFail($id);
+
+        // Update the student record
+        $student->update($request->validated());
+
+        // Redirect to the students index page
+        return redirect()->route('students.index')->with('success', 'Student record updated successfully');
+    }
 }

@@ -12,5 +12,7 @@
         @method('DELETE')
         
         <button class="btn my-4"> Delete Student </button>
+        
+        <a class="btn" href="{{ route('students.edit', $student->id) }}"> Edit Student </a>
     </form>
 </x-layout>
